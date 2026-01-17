@@ -4,6 +4,7 @@ using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
 using UmbraSync.API.Dto.Chat;
 using UmbraSync.API.Dto.Group;
+using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
 
 namespace UmbraSync.API.SignalR;
@@ -110,7 +111,6 @@ public interface IMareHub
 
     Task UserAddPair(UserDto user);
 
-    Task UserChatSendMsg(UserDto user, ChatMessage message);
 
     Task UserDelete();
 
@@ -156,7 +156,7 @@ public interface IMareHub
     Task<bool> SyncshellDiscoverySetPolicy(SyncshellDiscoverySetPolicyRequestDto request);
     Task<bool> SyncshellDiscoveryJoin(GroupDto group);
     Task<SlotInfoResponseDto?> SlotGetInfo(SlotLocationDto location);
-    Task<SlotInfoResponseDto?> SlotGetNearby(uint serverId, uint territoryId, float x, float y, float z);
+    Task<SlotInfoResponseDto?> SlotGetNearby(uint serverId, uint territoryId, uint divisionId, uint wardId, float x, float y, float z);
     Task<bool> SlotUpdate(SlotUpdateRequestDto request);
     Task<List<SlotInfoResponseDto>> SlotGetInfoForGroup(GroupDto group);
     Task<bool> SlotJoin(Guid slotId);
