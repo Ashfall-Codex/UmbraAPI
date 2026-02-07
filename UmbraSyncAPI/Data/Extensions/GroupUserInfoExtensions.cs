@@ -25,4 +25,15 @@ public static class GroupUserInfoExtensions
         if (isPinned) info |= GroupUserInfo.IsPinned;
         else info &= ~GroupUserInfo.IsPinned;
     }
+
+    public static bool CanPlacePings(this GroupUserInfo info)
+    {
+        return info.HasFlag(GroupUserInfo.CanPlacePings);
+    }
+
+    public static void SetCanPlacePings(this ref GroupUserInfo info, bool canPlacePings)
+    {
+        if (canPlacePings) info |= GroupUserInfo.CanPlacePings;
+        else info &= ~GroupUserInfo.CanPlacePings;
+    }
 }

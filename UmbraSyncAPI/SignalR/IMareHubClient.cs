@@ -2,7 +2,6 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
-using UmbraSync.API.Dto.Chat;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.User;
 
@@ -13,8 +12,6 @@ public interface IMareHubClient : IMareHub
     void OnDownloadReady(Action<Guid> act);
 
     void OnGroupChangePermissions(Action<GroupPermissionDto> act);
-
-    void OnGroupChatMsg(Action<GroupChatMsgDto> groupChatMsgDto);
 
     void OnGroupDelete(Action<GroupDto> act);
 
@@ -35,8 +32,6 @@ public interface IMareHubClient : IMareHub
     void OnUpdateSystemInfo(Action<SystemInfoDto> act);
 
     void OnUserAddClientPair(Action<UserPairDto> act);
-
-    void OnUserChatMsg(Action<UserChatMsgDto> chatMsgDto);
 
     void OnUserTypingState(Action<TypingStateDto> act);
 

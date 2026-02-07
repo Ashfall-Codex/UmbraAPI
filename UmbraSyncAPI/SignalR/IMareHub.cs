@@ -2,8 +2,8 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
-using UmbraSync.API.Dto.Chat;
 using UmbraSync.API.Dto.Group;
+using UmbraSync.API.Dto.Ping;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
 
@@ -19,8 +19,6 @@ public interface IMareHub
     Task Client_DownloadReady(Guid requestId);
 
     Task Client_GroupChangePermissions(GroupPermissionDto groupPermission);
-
-    Task Client_GroupChatMsg(GroupChatMsgDto groupChatMsgDto);
 
     Task Client_GroupDelete(GroupDto groupDto);
 
@@ -41,8 +39,6 @@ public interface IMareHub
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
 
     Task Client_UserAddClientPair(UserPairDto dto);
-
-    Task Client_UserChatMsg(UserChatMsgDto chatMsgDto);
 
     Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
 
@@ -79,8 +75,6 @@ public interface IMareHub
     Task GroupChangeOwnership(GroupPairDto groupPair);
 
     Task<bool> GroupChangePassword(GroupPasswordDto groupPassword);
-
-    Task GroupChatSendMsg(GroupDto group, ChatMessage message);
 
     Task GroupClear(GroupDto group);
 
@@ -160,4 +154,14 @@ public interface IMareHub
     Task<bool> SlotUpdate(SlotUpdateRequestDto request);
     Task<List<SlotInfoResponseDto>> SlotGetInfoForGroup(GroupDto group);
     Task<bool> SlotJoin(Guid slotId);
+
+    // Ping markers
+    Task GroupSendPing(GroupDto group, PingMarkerDto ping);
+    Task GroupRemovePing(GroupDto group, PingMarkerRemoveDto remove);
+    Task GroupClearPings(GroupDto group);
+
+    // Ping marker callbacks
+    Task Client_GroupReceivePing(GroupPingMarkerDto dto);
+    Task Client_GroupRemovePing(GroupData group, UserData sender, PingMarkerRemoveDto remove);
+    Task Client_GroupClearPings(GroupData group);
 }
