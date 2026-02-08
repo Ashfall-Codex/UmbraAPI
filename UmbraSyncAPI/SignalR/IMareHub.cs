@@ -155,6 +155,11 @@ public interface IMareHub
     Task<List<SlotInfoResponseDto>> SlotGetInfoForGroup(GroupDto group);
     Task<bool> SlotJoin(Guid slotId);
 
+    // Group profiles
+    Task<GroupProfileDto?> GroupGetProfile(GroupDto group);
+    Task GroupSetProfile(GroupProfileDto profile);
+    Task Client_GroupSendProfile(GroupProfileDto profile);
+
     // Ping markers
     Task GroupSendPing(GroupDto group, PingMarkerDto ping);
     Task GroupRemovePing(GroupDto group, PingMarkerRemoveDto remove);
