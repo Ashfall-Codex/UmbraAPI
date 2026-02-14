@@ -11,7 +11,7 @@ namespace UmbraSync.API.SignalR;
 
 public interface IMareHub
 {
-    const int ApiVersion = 1029;
+    const int ApiVersion = 2000;
     const string Path = "/mare";
 
     Task<bool> CheckClientHealth();
