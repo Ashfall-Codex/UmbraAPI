@@ -11,4 +11,5 @@ public record UserProfileDto(UserData User, bool Disabled, bool? IsNSFW, string?
     string? RpHeight = null, string? RpBuild = null, string? RpResidence = null, string? RpOccupation = null, string? RpAffiliation = null,
     string? RpAlignment = null, string? RpAdditionalInfo = null,
     string? RpNameColor = null,
+    string? RpCustomFields = null,
     string? CharacterName = null, uint? WorldId = null) : UserDto(User, CharacterName, WorldId);
