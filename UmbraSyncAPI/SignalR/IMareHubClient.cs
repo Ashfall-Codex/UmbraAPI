@@ -3,6 +3,7 @@ using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
 using UmbraSync.API.Dto.Group;
+using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.User;
 
 namespace UmbraSync.API.SignalR;
@@ -56,4 +57,10 @@ public interface IMareHubClient : IMareHub
     void OnGposeLobbyPushCharacterData(Action<CharaDataDownloadDto> act);
     void OnGposeLobbyPushPoseData(Action<UserData, PoseData> act);
     void OnGposeLobbyPushWorldData(Action<UserData, WorldData> act);
+
+    void OnQuestSessionJoin(Action<UserData> act);
+    void OnQuestSessionLeave(Action<UserData> act);
+    void OnQuestSessionStateUpdate(Action<UserData, QuestSessionStateDto> act);
+    void OnQuestSessionEventTriggered(Action<UserData, QuestEventTriggerDto> act);
+    void OnQuestSessionBranchingChoice(Action<UserData, QuestBranchingChoiceDto> act);
 }

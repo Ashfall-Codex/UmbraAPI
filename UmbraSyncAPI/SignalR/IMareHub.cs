@@ -5,6 +5,7 @@ using UmbraSync.API.Dto.CharaData;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.HousingShare;
 using UmbraSync.API.Dto.Ping;
+using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
 
@@ -177,4 +178,19 @@ public interface IMareHub
     Task<List<HousingShareEntryDto>> HousingShareGetOwn();
     Task<List<HousingShareEntryDto>> HousingShareGetForLocation(LocationInfo location);
     Task<bool> HousingShareDelete(Guid shareId);
+
+    // Quest sync
+    Task<string> QuestSessionCreate(string questId, string questName);
+    Task<List<UserData>> QuestSessionJoin(string sessionId);
+    Task<bool> QuestSessionLeave();
+    Task QuestSessionPushState(QuestSessionStateDto state);
+    Task QuestSessionTriggerEvent(QuestEventTriggerDto trigger);
+    Task QuestSessionBranchingChoice(QuestBranchingChoiceDto choice);
+
+    // Quest sync callbacks
+    Task Client_QuestSessionJoin(UserData userData);
+    Task Client_QuestSessionLeave(UserData userData);
+    Task Client_QuestSessionStateUpdate(UserData sender, QuestSessionStateDto state);
+    Task Client_QuestSessionEventTriggered(UserData sender, QuestEventTriggerDto trigger);
+    Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
 }
