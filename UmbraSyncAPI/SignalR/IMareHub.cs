@@ -2,6 +2,7 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
+using UmbraSync.API.Dto.Rgpd;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.HousingShare;
 using UmbraSync.API.Dto.Ping;
@@ -193,4 +194,8 @@ public interface IMareHub
     Task Client_QuestSessionStateUpdate(UserData sender, QuestSessionStateDto state);
     Task Client_QuestSessionEventTriggered(UserData sender, QuestEventTriggerDto trigger);
     Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
+
+    // RGPD / Privacy
+    Task<RgpdDataExportDto> UserRgpdExportData();
+    Task UserRgpdDeleteAllData();
 }
