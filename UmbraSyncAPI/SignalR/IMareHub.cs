@@ -167,6 +167,7 @@ public interface IMareHub
     Task<HousingSharePayloadDto?> HousingShareDownload(Guid shareId);
     Task<List<HousingShareEntryDto>> HousingShareGetOwn();
     Task<List<HousingShareEntryDto>> HousingShareGetForLocation(LocationInfo location);
+    Task<HousingShareEntryDto?> HousingShareUpdate(HousingShareUpdateRequestDto dto);
     Task<bool> HousingShareDelete(Guid shareId);
 
     // Quest sync

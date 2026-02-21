@@ -13,4 +13,6 @@ public class HousingShareUploadRequestDto
     [Key(4)] public byte[] Nonce { get; set; } = Array.Empty<byte>();
     [Key(5)] public byte[] Salt { get; set; } = Array.Empty<byte>();
     [Key(6)] public byte[] Tag { get; set; } = Array.Empty<byte>();
+    [Key(7)] public List<string> AllowedIndividuals { get; set; } = [];
+    [Key(8)] public List<string> AllowedSyncshells { get; set; } = [];
 }
