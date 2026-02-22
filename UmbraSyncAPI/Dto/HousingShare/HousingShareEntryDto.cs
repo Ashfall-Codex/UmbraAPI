@@ -14,4 +14,6 @@ public class HousingShareEntryDto
     [Key(5)] public bool IsOwner { get; set; }
     [Key(6)] public string OwnerUid { get; set; } = string.Empty;
     [Key(7)] public string OwnerAlias { get; set; } = string.Empty;
+    [Key(8)] public IReadOnlyList<string> AllowedIndividuals { get; set; } = Array.Empty<string>();
+    [Key(9)] public IReadOnlyList<string> AllowedSyncshells { get; set; } = Array.Empty<string>();
 }
