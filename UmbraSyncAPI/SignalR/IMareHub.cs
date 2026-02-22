@@ -5,7 +5,6 @@ using UmbraSync.API.Dto.CharaData;
 using UmbraSync.API.Dto.Rgpd;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.HousingShare;
-using UmbraSync.API.Dto.Ping;
 using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
@@ -162,16 +161,6 @@ public interface IMareHub
     Task<GroupProfileDto?> GroupGetProfile(GroupDto group);
     Task GroupSetProfile(GroupProfileDto profile);
     Task Client_GroupSendProfile(GroupProfileDto profile);
-
-    // Ping markers
-    Task GroupSendPing(GroupDto group, PingMarkerDto ping);
-    Task GroupRemovePing(GroupDto group, PingMarkerRemoveDto remove);
-    Task GroupClearPings(GroupDto group);
-
-    // Ping marker callbacks
-    Task Client_GroupReceivePing(GroupPingMarkerDto dto);
-    Task Client_GroupRemovePing(GroupData group, UserData sender, PingMarkerRemoveDto remove);
-    Task Client_GroupClearPings(GroupData group);
 
     // Housing share
     Task HousingShareUpload(HousingShareUploadRequestDto dto);
