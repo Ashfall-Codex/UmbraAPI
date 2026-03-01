@@ -13,4 +13,6 @@ public sealed record SyncshellDiscoveryEntryDto
     public bool AutoAcceptPairs { get; init; }
     public string? Description { get; init; }
     public int MaxUserCount { get; init; }
+    public bool IsNsfw { get; init; }
+    public string[]? Tags { get; init; }
 }
