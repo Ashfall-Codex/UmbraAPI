@@ -25,4 +25,5 @@ public static class GroupUserInfoExtensions
         if (isPinned) info |= GroupUserInfo.IsPinned;
         else info &= ~GroupUserInfo.IsPinned;
     }
+
 }

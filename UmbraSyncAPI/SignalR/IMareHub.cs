@@ -2,8 +2,10 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
-using UmbraSync.API.Dto.Chat;
+using UmbraSync.API.Dto.Rgpd;
 using UmbraSync.API.Dto.Group;
+using UmbraSync.API.Dto.HousingShare;
+using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
 
@@ -11,7 +13,7 @@ namespace UmbraSync.API.SignalR;
 
 public interface IMareHub
 {
-    const int ApiVersion = 1029;
+    const int ApiVersion = 2000;
     const string Path = "/mare";
 
     Task<bool> CheckClientHealth();
@@ -19,8 +21,6 @@ public interface IMareHub
     Task Client_DownloadReady(Guid requestId);
 
     Task Client_GroupChangePermissions(GroupPermissionDto groupPermission);
-
-    Task Client_GroupChatMsg(GroupChatMsgDto groupChatMsgDto);
 
     Task Client_GroupDelete(GroupDto groupDto);
 
@@ -41,8 +41,6 @@ public interface IMareHub
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
 
     Task Client_UserAddClientPair(UserPairDto dto);
-
-    Task Client_UserChatMsg(UserChatMsgDto chatMsgDto);
 
     Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
 
@@ -79,8 +77,6 @@ public interface IMareHub
     Task GroupChangeOwnership(GroupPairDto groupPair);
 
     Task<bool> GroupChangePassword(GroupPasswordDto groupPassword);
-
-    Task GroupChatSendMsg(GroupDto group, ChatMessage message);
 
     Task GroupClear(GroupDto group);
 
@@ -160,4 +156,36 @@ public interface IMareHub
     Task<bool> SlotUpdate(SlotUpdateRequestDto request);
     Task<List<SlotInfoResponseDto>> SlotGetInfoForGroup(GroupDto group);
     Task<bool> SlotJoin(Guid slotId);
+
+    // Group profiles
+    Task<GroupProfileDto?> GroupGetProfile(GroupDto group);
+    Task GroupSetProfile(GroupProfileDto profile);
+    Task Client_GroupSendProfile(GroupProfileDto profile);
+
+    // Housing share
+    Task HousingShareUpload(HousingShareUploadRequestDto dto);
+    Task<HousingSharePayloadDto?> HousingShareDownload(Guid shareId);
+    Task<List<HousingShareEntryDto>> HousingShareGetOwn();
+    Task<List<HousingShareEntryDto>> HousingShareGetForLocation(LocationInfo location);
+    Task<HousingShareEntryDto?> HousingShareUpdate(HousingShareUpdateRequestDto dto);
+    Task<bool> HousingShareDelete(Guid shareId);
+
+    // Quest sync
+    Task<string> QuestSessionCreate(string questId, string questName);
+    Task<List<UserData>> QuestSessionJoin(string sessionId);
+    Task<bool> QuestSessionLeave();
+    Task QuestSessionPushState(QuestSessionStateDto state);
+    Task QuestSessionTriggerEvent(QuestEventTriggerDto trigger);
+    Task QuestSessionBranchingChoice(QuestBranchingChoiceDto choice);
+
+    // Quest sync callbacks
+    Task Client_QuestSessionJoin(UserData userData);
+    Task Client_QuestSessionLeave(UserData userData);
+    Task Client_QuestSessionStateUpdate(UserData sender, QuestSessionStateDto state);
+    Task Client_QuestSessionEventTriggered(UserData sender, QuestEventTriggerDto trigger);
+    Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
+
+    // RGPD / Privacy
+    Task<RgpdDataExportDto> UserRgpdExportData();
+    Task UserRgpdDeleteAllData();
 }

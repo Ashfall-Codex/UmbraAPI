@@ -47,4 +47,15 @@ public static class GroupUserPermissionsExtensions
         if (set) perm |= GroupUserPermissions.DisableVFX;
         else perm &= ~GroupUserPermissions.DisableVFX;
     }
+
+    public static bool IsDisableHousing(this GroupUserPermissions perm)
+    {
+        return perm.HasFlag(GroupUserPermissions.DisableHousing);
+    }
+
+    public static void SetDisableHousing(this ref GroupUserPermissions perm, bool set)
+    {
+        if (set) perm |= GroupUserPermissions.DisableHousing;
+        else perm &= ~GroupUserPermissions.DisableHousing;
+    }
 }
