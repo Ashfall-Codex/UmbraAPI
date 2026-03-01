@@ -9,4 +9,5 @@ public enum UserPermissions
     DisableAnimations = 4,
     DisableSounds = 8,
     DisableVFX = 16,
+    DisableHousing = 32,
 }

@@ -58,4 +58,15 @@ public static class UserPermissionsExtensions
         if (set) perm |= UserPermissions.DisableVFX;
         else perm &= ~UserPermissions.DisableVFX;
     }
+
+    public static bool IsDisableHousing(this UserPermissions perm)
+    {
+        return perm.HasFlag(UserPermissions.DisableHousing);
+    }
+
+    public static void SetDisableHousing(this ref UserPermissions perm, bool set)
+    {
+        if (set) perm |= UserPermissions.DisableHousing;
+        else perm &= ~UserPermissions.DisableHousing;
+    }
 }
