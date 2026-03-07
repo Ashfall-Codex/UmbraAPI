@@ -188,6 +188,6 @@ public interface IMareHub
     Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
 
     // RGPD / Privacy
-    Task<RgpdDataExportDto> UserRgpdExportData();
+    Task<RgpdDataExportDto?> UserRgpdExportData();
     Task UserRgpdDeleteAllData();
 }
