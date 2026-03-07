@@ -42,6 +42,8 @@ public interface IMareHub
 
     Task Client_UserAddClientPair(UserPairDto dto);
 
+    Task Client_ReceivePairRequest(UserDto requester);
+
     Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
 
     Task Client_UserReceiveUploadStatus(UserDto dto);
