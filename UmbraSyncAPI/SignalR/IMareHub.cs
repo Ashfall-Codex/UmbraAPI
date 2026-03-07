@@ -118,6 +118,8 @@ public interface IMareHub
 
     Task<UserProfileDto> UserGetProfile(UserDto dto);
 
+    Task<List<UserProfileDto>> UserGetAllCharacterProfiles(UserDto dto);
+
     Task UserPushData(UserCharaDataMessageDto dto);
 
     Task UserRemovePair(UserDto userDto);
