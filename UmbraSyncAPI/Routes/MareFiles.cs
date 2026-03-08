@@ -18,6 +18,7 @@ public class MareFiles
     public const string ServerFiles_Upload = "upload";
     public const string ServerFiles_UploadRaw = "uploadRaw";
     public const string ServerFiles_UploadMunged = "uploadMunged";
+    public const string ServerFiles_ReportCdnMiss = "reportCdnMiss";
 
     public const string Distribution = "/dist";
     public const string Distribution_Get = "get";
@@ -38,6 +39,7 @@ public class MareFiles
     public static Uri ServerFilesUploadFullPath(Uri baseUri, string hash) => new(baseUri, ServerFiles + "/" + ServerFiles_Upload + "/" + hash);
     public static Uri ServerFilesUploadRawFullPath(Uri baseUri, string hash) => new(baseUri, ServerFiles + "/" + ServerFiles_UploadRaw + "/" + hash);
     public static Uri ServerFilesUploadMunged(Uri baseUri, string hash) => new(baseUri, ServerFiles + "/" + ServerFiles_UploadMunged + "/" + hash);
+    public static Uri ServerFilesReportCdnMissFullPath(Uri baseUri) => new(baseUri, ServerFiles + "/" + ServerFiles_ReportCdnMiss);
 
     public static Uri DistributionGetFullPath(Uri baseUri, string hash) => new(baseUri, Distribution + "/" + Distribution_Get + "?file=" + hash);
 
