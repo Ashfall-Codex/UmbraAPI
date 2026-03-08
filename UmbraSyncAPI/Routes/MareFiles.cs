@@ -18,6 +18,7 @@ public class MareFiles
     public const string ServerFiles_Upload = "upload";
     public const string ServerFiles_UploadRaw = "uploadRaw";
     public const string ServerFiles_UploadMunged = "uploadMunged";
+    public const string ServerFiles_ReportCdnMiss = "reportCdnMiss";
 
     public const string Distribution = "/dist";
     public const string Distribution_Get = "get";
