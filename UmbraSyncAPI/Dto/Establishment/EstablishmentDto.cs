@@ -20,8 +20,11 @@ public record EstablishmentDto
     public DateTime UpdatedUtc { get; init; }
     public string? LogoImageBase64 { get; init; }
     public string? BannerImageBase64 { get; init; }
-    public string? ManagerUID { get; init; }
-    public string? ManagerAlias { get; init; }
+    public int? ManagerRpProfileId { get; init; }
+    public string? ManagerCharacterName { get; init; }
+    public string? ManagerRpFirstName { get; init; }
+    public string? ManagerRpLastName { get; init; }
+    public string? ManagerRpProfilePictureBase64 { get; init; }
     public bool ShowManagerOnProfile { get; init; } = true;
     public EstablishmentLocationDto? Location { get; init; }
     public List<EstablishmentEventDto> Events { get; init; } = [];
