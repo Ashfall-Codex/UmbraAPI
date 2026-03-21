@@ -20,6 +20,9 @@ public record EstablishmentDto
     public DateTime UpdatedUtc { get; init; }
     public string? LogoImageBase64 { get; init; }
     public string? BannerImageBase64 { get; init; }
+    public string? ManagerUID { get; init; }
+    public string? ManagerAlias { get; init; }
+    public bool ShowManagerOnProfile { get; init; } = true;
     public EstablishmentLocationDto? Location { get; init; }
     public List<EstablishmentEventDto> Events { get; init; } = [];
 }
