@@ -15,5 +15,6 @@ public record EstablishmentCreateRequestDto
     public bool IsPublic { get; init; } = true;
     public string? LogoImageBase64 { get; init; }
     public string? BannerImageBase64 { get; init; }
+    public int? ManagerRpProfileId { get; init; }
     public EstablishmentLocationDto Location { get; init; } = null!;
 }
