@@ -11,4 +11,5 @@ public record EstablishmentEventUpsertRequestDto
     public string? Description { get; init; }
     public DateTime StartsAtUtc { get; init; }
     public DateTime? EndsAtUtc { get; init; }
+    public int Recurrence { get; init; }
 }
