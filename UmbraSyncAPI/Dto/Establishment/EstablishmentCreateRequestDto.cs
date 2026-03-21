@@ -13,5 +13,7 @@ public record EstablishmentCreateRequestDto
     public string? FactionTag { get; init; }
     public string? Schedule { get; init; }
     public bool IsPublic { get; init; } = true;
+    public string? LogoImageBase64 { get; init; }
+    public string? BannerImageBase64 { get; init; }
     public EstablishmentLocationDto Location { get; init; } = null!;
 }
