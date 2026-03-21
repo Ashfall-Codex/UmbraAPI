@@ -18,6 +18,8 @@ public record EstablishmentDto
     public bool IsPublic { get; init; } = true;
     public DateTime CreatedUtc { get; init; }
     public DateTime UpdatedUtc { get; init; }
+    public string? LogoImageBase64 { get; init; }
+    public string? BannerImageBase64 { get; init; }
     public EstablishmentLocationDto? Location { get; init; }
     public List<EstablishmentEventDto> Events { get; init; } = [];
 }
