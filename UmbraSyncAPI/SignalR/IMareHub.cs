@@ -180,4 +180,5 @@ public interface IMareHub
     Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
     Task<RgpdDataExportDto?> UserRgpdExportData();
     Task UserRgpdDeleteAllData();
+    Task Client_McdfShareReceived(string ownerUid, string description);
 }

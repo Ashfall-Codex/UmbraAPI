@@ -63,4 +63,5 @@ public interface IMareHubClient : IMareHub
     void OnQuestSessionStateUpdate(Action<UserData, QuestSessionStateDto> act);
     void OnQuestSessionEventTriggered(Action<UserData, QuestEventTriggerDto> act);
     void OnQuestSessionBranchingChoice(Action<UserData, QuestBranchingChoiceDto> act);
+    void OnMcdfShareReceived(Action<string, string> act);
 }
