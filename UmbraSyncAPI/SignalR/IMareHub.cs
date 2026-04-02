@@ -8,6 +8,7 @@ using UmbraSync.API.Dto.HousingShare;
 using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
+using UmbraSync.API.Dto.WildRp;
 
 namespace UmbraSync.API.SignalR;
 
@@ -181,4 +182,9 @@ public interface IMareHub
     Task<RgpdDataExportDto?> UserRgpdExportData();
     Task UserRgpdDeleteAllData();
     Task Client_McdfShareReceived(string ownerUid, string description);
+
+    Task<WildRpAnnouncementDto?> WildRpAnnounce(WildRpAnnounceRequestDto request);
+    Task<bool> WildRpWithdraw();
+    Task<WildRpListResponseDto> WildRpList(WildRpListRequestDto request);
+    Task<WildRpAnnouncementDto?> WildRpGetOwn();
 }
