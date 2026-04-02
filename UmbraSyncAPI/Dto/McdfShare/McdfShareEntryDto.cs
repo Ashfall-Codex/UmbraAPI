@@ -16,4 +16,5 @@ public class McdfShareEntryDto
     [Key(8)] public int DownloadCount { get; set; }
     [Key(9)] public IReadOnlyList<string> AllowedIndividuals { get; set; } = Array.Empty<string>();
     [Key(10)] public IReadOnlyList<string> AllowedSyncshells { get; set; } = Array.Empty<string>();
+    [Key(11)] public long DataSize { get; set; }
 }
