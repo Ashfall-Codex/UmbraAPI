@@ -11,6 +11,7 @@ public record WildRpAnnouncementDto
     public string? CharacterName { get; init; }
     public uint WorldId { get; init; }
     public uint TerritoryId { get; init; }
+    public uint? WardId { get; init; }
     public string? Message { get; init; }
     public string? RpTitle { get; init; }
     public string? RpFirstName { get; init; }
