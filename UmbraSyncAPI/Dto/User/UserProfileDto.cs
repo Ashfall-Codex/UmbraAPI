@@ -14,6 +14,5 @@ public record UserProfileDto(UserData User, bool Disabled, bool? IsNSFW, string?
     string? RpCustomFields = null,
     string? MoodlesData = null,
     ushort? ChatIcon = null,
-    uint? ChatGameIcon = null,
     byte? RpLevel = null,
     string? CharacterName = null, uint? WorldId = null) : UserDto(User, CharacterName, WorldId);
