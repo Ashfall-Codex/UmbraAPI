@@ -17,6 +17,7 @@ public record WildRpAnnouncementDto
     public string? RpFirstName { get; init; }
     public string? RpLastName { get; init; }
     public string? RpProfilePictureBase64 { get; init; }
+    public byte RpLevel { get; init; }
     public DateTime CreatedAtUtc { get; init; }
     public DateTime ExpiresAtUtc { get; init; }
 }
