@@ -21,5 +21,5 @@ public record ServerInfo
     public int MaxGroupsCreatedByUser { get; set; }
     public int MaxGroupsJoinedByUser { get; set; }
     public Uri FileServerAddress { get; set; } = new Uri("http://nonemptyuri");
-    public int MaxCharaData { get; set; }
+    public int MaxCharaData { get; set; } = 50;
 }
