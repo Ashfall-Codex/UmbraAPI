@@ -1,4 +1,4 @@
-﻿namespace UmbraSync.API.Data.Enum;
+namespace UmbraSync.API.Data.Enum;
 
 [Flags]
 public enum UserPermissions
@@ -10,4 +10,5 @@ public enum UserPermissions
     DisableSounds = 8,
     DisableVFX = 16,
     DisableHousing = 32,
+    Sticky = 64,
 }
