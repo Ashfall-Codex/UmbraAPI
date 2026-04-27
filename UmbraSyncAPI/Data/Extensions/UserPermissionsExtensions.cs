@@ -69,4 +69,15 @@ public static class UserPermissionsExtensions
         if (set) perm |= UserPermissions.DisableHousing;
         else perm &= ~UserPermissions.DisableHousing;
     }
+
+    public static bool IsSticky(this UserPermissions perm)
+    {
+        return perm.HasFlag(UserPermissions.Sticky);
+    }
+
+    public static void SetSticky(this ref UserPermissions perm, bool sticky)
+    {
+        if (sticky) perm |= UserPermissions.Sticky;
+        else perm &= ~UserPermissions.Sticky;
+    }
 }

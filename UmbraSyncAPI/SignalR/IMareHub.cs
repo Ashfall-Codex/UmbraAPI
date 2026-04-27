@@ -61,6 +61,10 @@ public interface IMareHub
 
     Task Client_UserUpdateSelfPairPermissions(UserPermissionsDto dto);
 
+    Task Client_UserUpdateDefaultPermissions(DefaultPermissionsDto dto);
+
+    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto);
+
     Task Client_UserTypingState(TypingStateDto dto);
 
     Task Client_GposeLobbyJoin(UserData userData);
@@ -115,7 +119,7 @@ public interface IMareHub
 
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs();
 
-    Task<List<UserPairDto>> UserGetPairedClients();
+    Task<List<UserFullPairDto>> UserGetPairedClients();
 
     Task<UserProfileDto> UserGetProfile(UserDto dto);
 
@@ -128,6 +132,10 @@ public interface IMareHub
     Task UserReportProfile(UserProfileReportDto userDto);
 
     Task UserSetPairPermissions(UserPermissionsDto userPermissions);
+
+    Task UserUpdateDefaultPermissions(DefaultPermissionsDto defaultPermissions);
+
+    Task SetBulkPermissions(BulkPermissionsDto bulkPermissions);
 
     Task UserSetProfile(UserProfileDto userDescription);
 
