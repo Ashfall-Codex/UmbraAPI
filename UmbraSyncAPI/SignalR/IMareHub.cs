@@ -8,6 +8,7 @@ using UmbraSync.API.Dto.HousingShare;
 using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
 using UmbraSync.API.Dto.User;
+using UmbraSync.API.Dto.WildRp;
 
 namespace UmbraSync.API.SignalR;
 
@@ -59,6 +60,10 @@ public interface IMareHub
     Task Client_UserUpdateProfile(UserDto dto);
 
     Task Client_UserUpdateSelfPairPermissions(UserPermissionsDto dto);
+
+    Task Client_UserUpdateDefaultPermissions(DefaultPermissionsDto dto);
+
+    Task Client_UpdateUserIndividualPairStatusDto(UserIndividualPairStatusDto dto);
 
     Task Client_UserTypingState(TypingStateDto dto);
 
@@ -114,7 +119,7 @@ public interface IMareHub
 
     Task<List<OnlineUserIdentDto>> UserGetOnlinePairs();
 
-    Task<List<UserPairDto>> UserGetPairedClients();
+    Task<List<UserFullPairDto>> UserGetPairedClients();
 
     Task<UserProfileDto> UserGetProfile(UserDto dto);
 
@@ -127,6 +132,10 @@ public interface IMareHub
     Task UserReportProfile(UserProfileReportDto userDto);
 
     Task UserSetPairPermissions(UserPermissionsDto userPermissions);
+
+    Task UserUpdateDefaultPermissions(DefaultPermissionsDto defaultPermissions);
+
+    Task SetBulkPermissions(BulkPermissionsDto bulkPermissions);
 
     Task UserSetProfile(UserProfileDto userDescription);
 
@@ -180,4 +189,10 @@ public interface IMareHub
     Task Client_QuestSessionBranchingChoice(UserData sender, QuestBranchingChoiceDto choice);
     Task<RgpdDataExportDto?> UserRgpdExportData();
     Task UserRgpdDeleteAllData();
+    Task Client_McdfShareReceived(string ownerUid, string description);
+
+    Task<WildRpAnnouncementDto?> WildRpAnnounce(WildRpAnnounceRequestDto request);
+    Task<bool> WildRpWithdraw();
+    Task<WildRpListResponseDto> WildRpList(WildRpListRequestDto request);
+    Task<WildRpAnnouncementDto?> WildRpGetOwn();
 }

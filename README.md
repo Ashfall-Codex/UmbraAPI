@@ -115,7 +115,7 @@ UmbraSyncAPI/
 | `UserDto` | User (`UserData`), CharacterName, WorldId |
 | `UserPairDto` | *+ OwnPermissions, OtherPermissions* |
 | `UserPermissionsDto` | *+ Permissions* |
-| `UserProfileDto` | *+ Disabled, IsNSFW, ProfilePictureBase64, Description, 13 champs RP (RpFirstName, RpLastName, RpTitle, RpAge, RpRace, RpEthnicity, RpHeight, RpBuild, RpResidence, RpOccupation, RpAffiliation, RpAlignment, RpAdditionalInfo), RpNameColor, RpCustomFields, MoodlesData* |
+| `UserProfileDto` | *+ Disabled, IsNSFW, ProfilePictureBase64, Description, 13 champs RP (RpFirstName, RpLastName, RpTitle, RpAge, RpRace, RpEthnicity, RpHeight, RpBuild, RpResidence, RpOccupation, RpAffiliation, RpAlignment, RpAdditionalInfo), RpNameColor, RpCustomFields, MoodlesData, ProfileIconId* |
 | `UserProfileReportDto` | *+ ProfileReport* |
 | `OnlineUserIdentDto` | *+ Ident* |
 | `OnlineUserCharaDataDto` | *+ CharaData* |
