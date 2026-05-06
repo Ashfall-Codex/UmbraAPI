@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 using UmbraSync.API.Data;
 using UmbraSync.API.Data.Enum;
 
@@ -9,4 +9,6 @@ public record GroupFullInfoDto(GroupData Group, UserData Owner, GroupPermissions
 {
     public GroupUserPermissions GroupUserPermissions { get; set; } = GroupUserPermissions;
     public GroupUserInfo GroupUserInfo { get; set; } = GroupUserInfo;
+    public Dictionary<string, GroupUserInfo> GroupPairUserInfos { get; set; } = new(StringComparer.Ordinal);
+    public int GroupUserCount { get; set; }
 }
