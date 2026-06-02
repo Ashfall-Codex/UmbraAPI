@@ -93,6 +93,8 @@ public interface IMareHub
 
     Task<bool> GroupChangePassword(GroupPasswordDto groupPassword);
 
+    Task<bool> GroupChangeAlias(GroupAliasDto groupAlias);
+
     Task GroupClear(GroupDto group);
 
     Task<GroupPasswordDto> GroupCreate(string? alias);
