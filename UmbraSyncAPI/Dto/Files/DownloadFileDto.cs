@@ -12,4 +12,6 @@ public record DownloadFileDto : ITransferFileDto
     public long Size { get; set; } = 0;
     public bool IsForbidden { get; set; } = false;
     public string ForbiddenBy { get; set; } = string.Empty;
+    public DownloadFileDto? CompressedAlternateFileDownload { get; set; } = null;
+    public bool WillNotBeCompressed { get; set; } = false;
 }
