@@ -38,15 +38,11 @@ public interface IMareHub
     Task Client_GroupSendInfo(GroupInfoDto groupInfo);
 
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message);
-
+    Task Client_ReceiveBroadcast(BroadcastMessageDto broadcast);
+    Task Client_ForceDisconnect(string reason);
+    
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
-
-    /// <summary>
-    /// Keep-alive applicatif côté client : payload de padding configurable poussé périodiquement
-    /// par le serveur pour défaire les middleboxes (box / AV / firewalls FAI) qui ignorent les
-    /// frames de control WebSocket et coupent la connexion après une fenêtre courte sans
-    /// trafic applicatif "substantiel". Le client n'a aucune logique métier à exécuter dessus.
-    /// </summary>
+    
     Task Client_KeepAlive(byte[] padding);
 
     Task Client_UserAddClientPair(UserPairDto dto);
