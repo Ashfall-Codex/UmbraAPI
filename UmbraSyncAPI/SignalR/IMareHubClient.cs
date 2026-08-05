@@ -30,6 +30,10 @@ public interface IMareHubClient : IMareHub
 
     void OnReceiveServerMessage(Action<MessageSeverity, string> act);
 
+    void OnReceiveBroadcast(Action<BroadcastMessageDto> act);
+
+    void OnForceDisconnect(Action<string> act);
+
     void OnUpdateSystemInfo(Action<SystemInfoDto> act);
 
     void OnUserAddClientPair(Action<UserPairDto> act);

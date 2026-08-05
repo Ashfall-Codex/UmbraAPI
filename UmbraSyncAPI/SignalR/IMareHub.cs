@@ -39,6 +39,20 @@ public interface IMareHub
 
     Task Client_ReceiveServerMessage(MessageSeverity messageSeverity, string message);
 
+    /// <summary>
+    /// Annonce administrateur diffusée à tous les clients connectés (maintenance, redémarrage…).
+    /// Distinct de <see cref="Client_ReceiveServerMessage"/> qui véhicule aussi des messages
+    /// fonctionnels : ce canal est réservé aux annonces et est écrit dans le chat du jeu.
+    /// </summary>
+    Task Client_ReceiveBroadcast(BroadcastMessageDto broadcast);
+
+    /// <summary>
+    /// Ordonne au client de couper sa connexion : sa clé secrète vient d'être régénérée depuis
+    /// Ashfall Connect et n'est plus valide. Sans ça le JWT déjà émis resterait accepté jusqu'à
+    /// son expiration, laissant le joueur connecté avec une clé qui n'existe plus.
+    /// </summary>
+    Task Client_ForceDisconnect(string reason);
+
     Task Client_UpdateSystemInfo(SystemInfoDto systemInfo);
 
     /// <summary>
