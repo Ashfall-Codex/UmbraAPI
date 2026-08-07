@@ -16,4 +16,7 @@ public class HousingScenarioEntryDto
     [Key(7)] public string OwnerAlias { get; set; } = string.Empty;
     [Key(8)] public IReadOnlyList<string> AllowedIndividuals { get; set; } = Array.Empty<string>();
     [Key(9)] public IReadOnlyList<string> AllowedSyncshells { get; set; } = Array.Empty<string>();
+    [Key(10)] public IReadOnlyList<string> AllowedEditors { get; set; } = Array.Empty<string>();
+    [Key(11)] public bool CanEdit { get; set; }
+    [Key(12)] public int ContentRevision { get; set; }
 }

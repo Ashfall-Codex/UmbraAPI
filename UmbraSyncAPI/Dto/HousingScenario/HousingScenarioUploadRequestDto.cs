@@ -15,4 +15,6 @@ public class HousingScenarioUploadRequestDto
     [Key(6)] public byte[] Tag { get; set; } = Array.Empty<byte>();
     [Key(7)] public List<string> AllowedIndividuals { get; set; } = [];
     [Key(8)] public List<string> AllowedSyncshells { get; set; } = [];
+    [Key(9)] public List<string> AllowedEditors { get; set; } = [];
+    [Key(10)] public int? BaseContentRevision { get; set; }
 }
