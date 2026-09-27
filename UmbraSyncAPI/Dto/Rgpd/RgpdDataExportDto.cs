@@ -39,10 +39,87 @@ public class RgpdDataExportDto
     [Key(28)] public int EstablishmentCount { get; set; }
     [Key(29)] public int WildRpAnnouncementCount { get; set; }
     [Key(30)] public int HousingScenarioCount { get; set; }
-    /// Rappelle que le contenu chiffré des partages n'est pas exportable : la clé ne quitte jamais le client.
+    /// Rappelle que l'export ne fournit que les métadonnées des partages, dont le contenu est stocké chiffré.
     [Key(31)] public string? EncryptedContentNotice { get; set; }
     /// Rappelle qu'Ashfall Connect est un traitement distinct, à interroger séparément.
     [Key(32)] public string? ExternalServicesNotice { get; set; }
+    [Key(33)] public ulong? LinkedDiscordId { get; set; }
+    [Key(34)] public List<string> IncomingPairUIDs { get; set; } = [];
+    [Key(35)] public List<string> OwnedGroupGIDs { get; set; } = [];
+    [Key(36)] public List<RgpdGroupBanDto> GroupBansReceived { get; set; } = [];
+    [Key(37)] public List<RgpdGroupBanDto> GroupBansIssued { get; set; } = [];
+    [Key(38)] public List<RgpdPairPermissionDto> PairPermissions { get; set; } = [];
+    [Key(39)] public List<RgpdGroupPermissionDto> GroupPermissions { get; set; } = [];
+    [Key(40)] public RgpdDefaultPermissionsDto? DefaultPermissions { get; set; }
+    [Key(41)] public List<string> SecondaryAccountUIDs { get; set; } = [];
+    [Key(42)] public List<RgpdSecondaryAccountDto> SecondaryAccounts { get; set; } = [];
+    [Key(43)] public bool IsBanned { get; set; }
+    [Key(44)] public List<Guid> EditableScenarioIds { get; set; } = [];
+    [Key(45)] public List<Guid> InvitedScenarioIds { get; set; } = [];
+    [Key(46)] public List<RgpdProfileReportDto> ProfileReportsIssued { get; set; } = [];
+    /// Rappelle que les journaux techniques du serveur ne figurent pas dans l'export.
+    [Key(47)] public string? TechnicalLogsNotice { get; set; }
+}
+
+/// Bannissement de syncshell. OtherUID désigne l'autre partie : l'auteur du bannissement
+/// pour un bannissement subi, l'utilisateur banni pour un bannissement émis.
+[MessagePackObject]
+public class RgpdGroupBanDto
+{
+    [Key(0)] public string GID { get; set; } = string.Empty;
+    [Key(1)] public DateTime BannedOn { get; set; }
+    [Key(2)] public string? Reason { get; set; }
+    [Key(3)] public string? OtherUID { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdPairPermissionDto
+{
+    [Key(0)] public string OtherUID { get; set; } = string.Empty;
+    [Key(1)] public bool Sticky { get; set; }
+    [Key(2)] public bool IsPaused { get; set; }
+    [Key(3)] public bool DisableAnimations { get; set; }
+    [Key(4)] public bool DisableVFX { get; set; }
+    [Key(5)] public bool DisableSounds { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdGroupPermissionDto
+{
+    [Key(0)] public string GID { get; set; } = string.Empty;
+    [Key(1)] public bool IsPaused { get; set; }
+    [Key(2)] public bool DisableAnimations { get; set; }
+    [Key(3)] public bool DisableSounds { get; set; }
+    [Key(4)] public bool DisableVFX { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdDefaultPermissionsDto
+{
+    [Key(0)] public bool DisableIndividualAnimations { get; set; }
+    [Key(1)] public bool DisableIndividualSounds { get; set; }
+    [Key(2)] public bool DisableIndividualVFX { get; set; }
+    [Key(3)] public bool DisableGroupAnimations { get; set; }
+    [Key(4)] public bool DisableGroupSounds { get; set; }
+    [Key(5)] public bool DisableGroupVFX { get; set; }
+    [Key(6)] public bool IndividualIsSticky { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdSecondaryAccountDto
+{
+    [Key(0)] public string UID { get; set; } = string.Empty;
+    [Key(1)] public string? Alias { get; set; }
+    [Key(2)] public DateTime LastLoggedIn { get; set; }
+    [Key(3)] public bool IsBanned { get; set; }
+    [Key(4)] public List<RgpdRpProfileSummaryDto> RpProfiles { get; set; } = [];
+}
+
+[MessagePackObject]
+public class RgpdProfileReportDto
+{
+    [Key(0)] public DateTime ReportDate { get; set; }
+    [Key(1)] public string? ReportReason { get; set; }
 }
 
 [MessagePackObject]
@@ -72,6 +149,9 @@ public class RgpdRpProfileSummaryDto
     [Key(19)] public string? MoodlesData { get; set; }
     [Key(20)] public string? EnrichedProfileJson { get; set; }
     [Key(21)] public string? EnrichedProfileVisibility { get; set; }
+    [Key(22)] public bool IsRpNSFW { get; set; }
+    [Key(23)] public ushort ChatIcon { get; set; }
+    [Key(24)] public byte RpLevel { get; set; }
 }
 
 [MessagePackObject]
@@ -100,6 +180,10 @@ public class RgpdEstablishmentDto
     [Key(20)] public string? BannerImageBase64 { get; set; }
     [Key(21)] public int? ManagerRpProfileId { get; set; }
     [Key(22)] public List<RgpdEstablishmentEventDto> Events { get; set; } = [];
+    [Key(23)] public float? X { get; set; }
+    [Key(24)] public float? Y { get; set; }
+    [Key(25)] public float? Z { get; set; }
+    [Key(26)] public float? Radius { get; set; }
 }
 
 [MessagePackObject]
@@ -128,8 +212,8 @@ public class RgpdWildRpAnnouncementDto
     [Key(8)] public DateTime ExpiresAtUtc { get; set; }
 }
 
-/// Métadonnées d'un partage. Le contenu (CipherData) est chiffré côté client : le serveur
-/// ne détient pas la clé et ne peut donc pas l'exporter en clair.
+/// Métadonnées d'un partage. Le contenu (CipherData) est stocké chiffré et n'est pas exporté :
+/// il reste disponible depuis le client, qui en est la source.
 [MessagePackObject]
 public class RgpdShareSummaryDto
 {
