@@ -13,4 +13,5 @@ public sealed record GroupProfileDto
     public string? BannerImageBase64 { get; init; }
     public bool IsNsfw { get; init; }
     public bool IsDisabled { get; init; }
+    public string? BorderColor { get; init; }
 }
