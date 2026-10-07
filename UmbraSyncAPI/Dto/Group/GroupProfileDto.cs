@@ -13,10 +13,5 @@ public sealed record GroupProfileDto
     public string? BannerImageBase64 { get; init; }
     public bool IsNsfw { get; init; }
     public bool IsDisabled { get; init; }
-
-    /// <summary>
-    /// Couleur du contour de l'icône, choisie par le propriétaire (« #RRGGBB »).
-    /// En envoi : null = inchangée, chaîne vide = effacer. En réception : null = aucune.
-    /// </summary>
     public string? BorderColor { get; init; }
 }
