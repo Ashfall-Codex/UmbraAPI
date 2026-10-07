@@ -13,4 +13,6 @@ public class McdfSharePayloadDto
     [Key(5)] public byte[] Tag { get; set; } = [];
     [Key(6)] public DateTime CreatedUtc { get; set; }
     [Key(7)] public DateTime? ExpiresAtUtc { get; set; }
+    // Taille réelle du chiffré. Si > CipherData.Length, le contenu est à récupérer via McdfShareDownloadStream.
+    [Key(8)] public long CipherLength { get; set; }
 }
