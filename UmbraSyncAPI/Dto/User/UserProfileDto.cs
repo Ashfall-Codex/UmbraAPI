@@ -1,5 +1,6 @@
 ﻿using MessagePack;
 using UmbraSync.API.Data;
+using UmbraSync.API.Data.Enum;
 
 namespace UmbraSync.API.Dto.User;
 
@@ -15,4 +16,5 @@ public record UserProfileDto(UserData User, bool Disabled, bool? IsNSFW, string?
     string? MoodlesData = null,
     ushort? ChatIcon = null,
     byte? RpLevel = null,
-    string? CharacterName = null, uint? WorldId = null) : UserDto(User, CharacterName, WorldId);
+    string? CharacterName = null, uint? WorldId = null,
+    RpProfileVisibility? RpVisibility = null) : UserDto(User, CharacterName, WorldId);
