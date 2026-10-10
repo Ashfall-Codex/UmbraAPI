@@ -17,4 +17,5 @@ public record UserProfileDto(UserData User, bool Disabled, bool? IsNSFW, string?
     ushort? ChatIcon = null,
     byte? RpLevel = null,
     string? CharacterName = null, uint? WorldId = null,
-    RpProfileVisibility? RpVisibility = null) : UserDto(User, CharacterName, WorldId);
+    RpProfileVisibility? RpVisibility = null,
+    string? RpBannerBase64 = null) : UserDto(User, CharacterName, WorldId);

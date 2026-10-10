@@ -154,6 +154,7 @@ public class RgpdRpProfileSummaryDto
     [Key(22)] public bool IsRpNSFW { get; set; }
     [Key(23)] public ushort ChatIcon { get; set; }
     [Key(24)] public byte RpLevel { get; set; }
+    [Key(25)] public string? RpBannerBase64 { get; set; }
 }
 
 [MessagePackObject]
