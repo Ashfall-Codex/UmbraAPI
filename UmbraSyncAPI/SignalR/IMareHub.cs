@@ -51,6 +51,8 @@ public interface IMareHub
 
     Task Client_PairRequestAccepted(UserDto acceptor);
 
+    Task Client_FilesReUploadRequested(List<string> hashes);
+
     Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
 
     Task Client_UserReceiveUploadStatus(UserDto dto);
@@ -127,6 +129,8 @@ public interface IMareHub
     Task UserUnblock(UserDto user);
 
     Task<List<UserData>> UserGetBlockedUsers();
+
+    Task FilesReportMissing(UserDto owner, List<string> hashes);
 
 
     Task UserDelete();
