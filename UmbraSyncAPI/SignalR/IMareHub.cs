@@ -49,6 +49,8 @@ public interface IMareHub
 
     Task Client_ReceivePairRequest(UserDto requester);
 
+    Task Client_PairRequestAccepted(UserDto acceptor);
+
     Task Client_UserReceiveCharacterData(OnlineUserCharaDataDto dataDto);
 
     Task Client_UserReceiveUploadStatus(UserDto dto);
@@ -119,6 +121,12 @@ public interface IMareHub
     Task<int> GroupPrune(GroupDto group, int days, bool execute);
 
     Task UserAddPair(UserDto user);
+
+    Task UserBlock(UserDto user);
+
+    Task UserUnblock(UserDto user);
+
+    Task<List<UserData>> UserGetBlockedUsers();
 
 
     Task UserDelete();
