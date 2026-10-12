@@ -16,6 +16,8 @@ public interface IMareHub
 {
     const int ApiVersion = 5000;
     const string Path = "/mare";
+    // Message de la HubException levée par UserAddPair quand le destinataire refuse les demandes par UID
+    const string ErrorPairRequestsDisabled = "PAIR_REQUESTS_DISABLED";
 
     Task<bool> CheckClientHealth();
 
@@ -129,6 +131,9 @@ public interface IMareHub
     Task UserUnblock(UserDto user);
 
     Task<List<UserData>> UserGetBlockedUsers();
+
+    // Accepter ou non les demandes d'ami par UID ; refusées, UserAddPair lève ErrorPairRequestsDisabled chez l'expéditeur
+    Task UserSetPairRequestsAllowed(bool allowed);
 
     Task FilesReportMissing(UserDto owner, List<string> hashes);
 
