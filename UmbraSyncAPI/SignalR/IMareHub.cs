@@ -14,9 +14,8 @@ namespace UmbraSync.API.SignalR;
 
 public interface IMareHub
 {
-    const int ApiVersion = 5000;
+    const int ApiVersion = 5001;
     const string Path = "/mare";
-    // Message de la HubException levée par UserAddPair quand le destinataire refuse les demandes par UID
     const string ErrorPairRequestsDisabled = "PAIR_REQUESTS_DISABLED";
 
     Task<bool> CheckClientHealth();
