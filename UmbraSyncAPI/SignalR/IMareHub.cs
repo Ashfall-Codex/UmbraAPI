@@ -2,6 +2,7 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
+using UmbraSync.API.Dto.Establishment;
 using UmbraSync.API.Dto.Rgpd;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.HousingShare;
@@ -212,6 +213,8 @@ public interface IMareHub
     Task<RgpdDataExportDto?> UserRgpdExportData();
     Task UserRgpdDeleteAllData();
     Task Client_McdfShareReceived(string ownerUid, string description);
+    Task Client_EstablishmentAffiliationRequested(EstablishmentAffiliationDto dto);
+    Task Client_EstablishmentAffiliationResponded(EstablishmentAffiliationDto dto);
 
     Task<WildRpAnnouncementDto?> WildRpAnnounce(WildRpAnnounceRequestDto request);
     Task<bool> WildRpWithdraw();

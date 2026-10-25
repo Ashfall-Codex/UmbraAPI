@@ -59,12 +59,10 @@ public class RgpdDataExportDto
     [Key(44)] public List<Guid> EditableScenarioIds { get; set; } = [];
     [Key(45)] public List<Guid> InvitedScenarioIds { get; set; } = [];
     [Key(46)] public List<RgpdProfileReportDto> ProfileReportsIssued { get; set; } = [];
-    /// Rappelle que les journaux techniques du serveur ne figurent pas dans l'export.
     [Key(47)] public string? TechnicalLogsNotice { get; set; }
+    [Key(48)] public List<RgpdEstablishmentAffiliationDto> EstablishmentAffiliations { get; set; } = [];
 }
 
-/// Bannissement de syncshell. OtherUID désigne l'autre partie : l'auteur du bannissement
-/// pour un bannissement subi, l'utilisateur banni pour un bannissement émis.
 [MessagePackObject]
 public class RgpdGroupBanDto
 {
@@ -188,6 +186,21 @@ public class RgpdEstablishmentDto
     [Key(24)] public float? Y { get; set; }
     [Key(25)] public float? Z { get; set; }
     [Key(26)] public float? Radius { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdEstablishmentAffiliationDto
+{
+    [Key(0)] public Guid Id { get; set; }
+    [Key(1)] public Guid EstablishmentId { get; set; }
+    [Key(2)] public string EstablishmentName { get; set; } = string.Empty;
+    [Key(3)] public string CharacterName { get; set; } = string.Empty;
+    [Key(4)] public uint WorldId { get; set; }
+    [Key(5)] public int Status { get; set; }
+    [Key(6)] public bool ShowOnProfile { get; set; }
+    [Key(7)] public string? Message { get; set; }
+    [Key(8)] public DateTime RequestedUtc { get; set; }
+    [Key(9)] public DateTime? RespondedUtc { get; set; }
 }
 
 [MessagePackObject]

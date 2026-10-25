@@ -2,6 +2,7 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
+using UmbraSync.API.Dto.Establishment;
 using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.User;
@@ -68,4 +69,6 @@ public interface IMareHubClient : IMareHub
     void OnQuestSessionEventTriggered(Action<UserData, QuestEventTriggerDto> act);
     void OnQuestSessionBranchingChoice(Action<UserData, QuestBranchingChoiceDto> act);
     void OnMcdfShareReceived(Action<string, string> act);
+    void OnEstablishmentAffiliationRequested(Action<EstablishmentAffiliationDto> act);
+    void OnEstablishmentAffiliationResponded(Action<EstablishmentAffiliationDto> act);
 }
