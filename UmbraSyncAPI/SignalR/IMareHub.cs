@@ -15,7 +15,7 @@ namespace UmbraSync.API.SignalR;
 
 public interface IMareHub
 {
-    const int ApiVersion = 5001;
+    const int ApiVersion = 5002;
     const string Path = "/mare";
     const string ErrorPairRequestsDisabled = "PAIR_REQUESTS_DISABLED";
 
