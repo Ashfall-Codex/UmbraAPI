@@ -17,4 +17,6 @@ public record DownloadFileDto : ITransferFileDto
     public DownloadFileDto? CompressedAlternateFileDownload { get; set; } = null;
     // true = le serveur a déterminé que ce fichier n'aura jamais d'alternate (non-texture, normal map exclue, échec définitif).
     public bool WillNotBeCompressed { get; set; } = false;
+    // BLAKE3 du contenu calculé par le serveur, vide s'il ne le connaît pas encore. Champ additif.
+    public string Blake3 { get; set; } = string.Empty;
 }

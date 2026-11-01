@@ -26,4 +26,7 @@ public class FileReplacementData
     public string[] GamePaths { get; set; } = Array.Empty<string>();
     public string Hash { get; set; } = string.Empty;
     public string FileSwapPath { get; set; } = string.Empty;
+    // BLAKE3 du contenu calculé par l'émetteur : le destinataire vérifie le fichier téléchargé de bout en bout.
+    // Champ additif : un client ou un serveur qui ne le connaît pas ignore cette clé (MessagePack keyAsPropertyName).
+    public string Blake3 { get; set; } = string.Empty;
 }
