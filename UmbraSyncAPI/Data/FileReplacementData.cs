@@ -26,4 +26,5 @@ public class FileReplacementData
     public string[] GamePaths { get; set; } = Array.Empty<string>();
     public string Hash { get; set; } = string.Empty;
     public string FileSwapPath { get; set; } = string.Empty;
+    public string Blake3 { get; set; } = string.Empty;
 }
