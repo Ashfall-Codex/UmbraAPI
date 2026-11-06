@@ -8,6 +8,7 @@ using UmbraSync.API.Dto.Group;
 using UmbraSync.API.Dto.HousingShare;
 using UmbraSync.API.Dto.QuestSync;
 using UmbraSync.API.Dto.Slot;
+using UmbraSync.API.Dto.StageShare;
 using UmbraSync.API.Dto.User;
 using UmbraSync.API.Dto.WildRp;
 
@@ -201,6 +202,12 @@ public interface IMareHub
     Task<List<HousingShareEntryDto>> HousingShareGetForLocation(LocationInfo location);
     Task<HousingShareEntryDto?> HousingShareUpdate(HousingShareUpdateRequestDto dto);
     Task<bool> HousingShareDelete(Guid shareId);
+    Task StageShareUpload(StageShareUploadRequestDto dto);
+    Task<StageSharePayloadDto?> StageShareDownload(Guid shareId);
+    Task<List<StageShareEntryDto>> StageShareGetOwn();
+    Task<List<StageShareEntryDto>> StageShareGetForLocation(StageLocationDto location);
+    Task<StageShareEntryDto?> StageShareUpdate(StageShareUpdateRequestDto dto);
+    Task<bool> StageShareDelete(Guid shareId);
     Task<string> QuestSessionCreate(string questId, string questName);
     Task<List<UserData>> QuestSessionJoin(string sessionId);
     Task<bool> QuestSessionLeave();

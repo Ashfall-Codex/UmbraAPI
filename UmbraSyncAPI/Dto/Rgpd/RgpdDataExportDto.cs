@@ -61,6 +61,8 @@ public class RgpdDataExportDto
     [Key(46)] public List<RgpdProfileReportDto> ProfileReportsIssued { get; set; } = [];
     [Key(47)] public string? TechnicalLogsNotice { get; set; }
     [Key(48)] public List<RgpdEstablishmentAffiliationDto> EstablishmentAffiliations { get; set; } = [];
+    [Key(49)] public int StageShareCount { get; set; }
+    [Key(50)] public List<RgpdStageShareSummaryDto> StageShares { get; set; } = [];
 }
 
 [MessagePackObject]
@@ -271,4 +273,22 @@ public class RgpdUploadedFileDto
     [Key(0)] public string Hash { get; set; } = string.Empty;
     [Key(1)] public long Size { get; set; }
     [Key(2)] public DateTime UploadDate { get; set; }
+}
+[MessagePackObject]
+public class RgpdStageShareSummaryDto
+{
+    [Key(0)] public Guid Id { get; set; }
+    [Key(1)] public string StageName { get; set; } = string.Empty;
+    [Key(2)] public string Description { get; set; } = string.Empty;
+    [Key(3)] public DateTime CreatedUtc { get; set; }
+    [Key(4)] public DateTime? UpdatedUtc { get; set; }
+    [Key(5)] public List<string> AllowedUIDs { get; set; } = [];
+    [Key(6)] public List<string> AllowedGIDs { get; set; } = [];
+    [Key(7)] public int EncryptedPayloadSizeBytes { get; set; }
+    [Key(8)] public uint WorldId { get; set; }
+    [Key(9)] public int TerritoryId { get; set; }
+    [Key(10)] public int WardId { get; set; }
+    [Key(11)] public int DivisionId { get; set; }
+    [Key(12)] public int HouseId { get; set; }
+    [Key(13)] public int RoomId { get; set; }
 }
