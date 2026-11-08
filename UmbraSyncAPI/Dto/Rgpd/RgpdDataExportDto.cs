@@ -63,6 +63,10 @@ public class RgpdDataExportDto
     [Key(48)] public List<RgpdEstablishmentAffiliationDto> EstablishmentAffiliations { get; set; } = [];
     [Key(49)] public int StageShareCount { get; set; }
     [Key(50)] public List<RgpdStageShareSummaryDto> StageShares { get; set; } = [];
+    [Key(51)] public int DecorCatalogEntryCount { get; set; }
+    [Key(52)] public List<RgpdDecorCatalogEntryDto> DecorCatalogEntries { get; set; } = [];
+    [Key(53)] public List<Guid> DecorCatalogFavoriteIds { get; set; } = [];
+    [Key(54)] public List<RgpdDecorCatalogReportDto> DecorCatalogReportsIssued { get; set; } = [];
 }
 
 [MessagePackObject]
@@ -291,4 +295,27 @@ public class RgpdStageShareSummaryDto
     [Key(11)] public int DivisionId { get; set; }
     [Key(12)] public int HouseId { get; set; }
     [Key(13)] public int RoomId { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdDecorCatalogEntryDto
+{
+    [Key(0)] public Guid Id { get; set; }
+    [Key(1)] public string Name { get; set; } = string.Empty;
+    [Key(2)] public string Description { get; set; } = string.Empty;
+    [Key(3)] public DateTime CreatedUtc { get; set; }
+    [Key(4)] public DateTime? UpdatedUtc { get; set; }
+    [Key(5)] public int ContentSizeBytes { get; set; }
+    [Key(6)] public bool HasPreviewImage { get; set; }
+    [Key(7)] public int DisplayCount { get; set; }
+    [Key(8)] public int FavoriteCount { get; set; }
+    [Key(9)] public int AnchorTerritory { get; set; }
+}
+
+[MessagePackObject]
+public class RgpdDecorCatalogReportDto
+{
+    [Key(0)] public Guid EntryId { get; set; }
+    [Key(1)] public DateTime ReportDate { get; set; }
+    [Key(2)] public string Reason { get; set; } = string.Empty;
 }

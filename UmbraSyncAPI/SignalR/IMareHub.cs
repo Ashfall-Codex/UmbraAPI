@@ -2,6 +2,7 @@
 using UmbraSync.API.Data.Enum;
 using UmbraSync.API.Dto;
 using UmbraSync.API.Dto.CharaData;
+using UmbraSync.API.Dto.DecorCatalog;
 using UmbraSync.API.Dto.Establishment;
 using UmbraSync.API.Dto.Rgpd;
 using UmbraSync.API.Dto.Group;
@@ -208,6 +209,14 @@ public interface IMareHub
     Task<List<StageShareEntryDto>> StageShareGetForLocation(StageLocationDto location);
     Task<StageShareEntryDto?> StageShareUpdate(StageShareUpdateRequestDto dto);
     Task<bool> StageShareDelete(Guid shareId);
+    Task<DecorCatalogListResponseDto> DecorCatalogList(DecorCatalogListRequestDto dto);
+    Task<string?> DecorCatalogGetPreview(Guid id);
+    Task<DecorCatalogPayloadDto?> DecorCatalogDownload(Guid id);
+    Task<DecorCatalogEntryDto?> DecorCatalogPublish(DecorCatalogPublishRequestDto dto);
+    Task<DecorCatalogEntryDto?> DecorCatalogUpdate(DecorCatalogUpdateRequestDto dto);
+    Task<bool> DecorCatalogDelete(Guid id);
+    Task<int> DecorCatalogSetFavorite(Guid id, bool favorite);
+    Task DecorCatalogReport(DecorCatalogReportDto dto);
     Task<string> QuestSessionCreate(string questId, string questName);
     Task<List<UserData>> QuestSessionJoin(string sessionId);
     Task<bool> QuestSessionLeave();
