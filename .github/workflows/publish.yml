@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
+      packages: write
     env:
       DOTNET_NOLOGO: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -54,15 +54,11 @@ jobs:
       - name: Création du paquet
         run: dotnet pack "$PROJECT" --configuration Release --output artifacts --nologo -p:ContinuousIntegrationBuild=true
 
-      - name: Connexion à nuget.org
-        uses: NuGet/login@v1
-        id: login
-        with:
-          user: ${{ secrets.NUGET_USER }}
-
-      - name: Publication sur nuget.org
+      - name: Publication sur GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dotnet nuget push "artifacts/*.nupkg" \
-            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
-            --source https://api.nuget.org/v3/index.json \
+            --api-key "$GITHUB_TOKEN" \
+            --source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json" \
             --skip-duplicate

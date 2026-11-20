@@ -247,7 +247,7 @@ dotnet build UmbraSyncAPI/UmbraSync.API.csproj
 
 ## Paquet NuGet
 
-Le projet est publié sur nuget.org sous le nom `Ashfall.UmbraSync.Api`. L'assembly et l'espace de noms restent `UmbraSync.API`.
+Le projet est publié sur GitHub Packages (`https://nuget.pkg.github.com/Ashfall-Codex/index.json`) sous le nom `Ashfall.UmbraSync.Api`. L'assembly et l'espace de noms restent `UmbraSync.API`.
 
 **Numérotation** : le majeur vaut `IMareHub.ApiVersion` (un client et un serveur ne se connectent que si elle est identique), le mineur augmente à chaque ajout compatible, le correctif quand rien ne change sur le fil.
 
@@ -255,10 +255,12 @@ Le projet est publié sur nuget.org sous le nom `Ashfall.UmbraSync.Api`. L'assem
 
 1. Mettre à jour `<Version>` dans `UmbraSync.API.csproj`, et `ApiVersion` si le protocole casse.
 2. Pousser le commit sur `main`, puis un tag `vX.Y.Z` identique à la version.
-3. Le workflow `publish.yml` vérifie que le tag pointe sur `main`, qu'il correspond à la version et que le majeur vaut `ApiVersion`, puis publie le paquet et ses symboles (Trusted Publishing, aucune clé stockée).
+3. Le workflow `publish.yml` vérifie que le tag pointe sur `main`, qu'il correspond à la version et que le majeur vaut `ApiVersion`, puis publie le paquet avec le `GITHUB_TOKEN` du workflow (aucun secret à créer).
 4. Côté client et serveur, reporter la version dans `UmbraApiVersion` (`Directory.Build.targets` du client, `UmbraSyncServer/Directory.Build.props` du serveur).
 
 **Mode local** : tant que le sous-module `UmbraAPI` est présent, client et serveur compilent contre ce checkout. La CI, la release du client et `deploy.sh` forcent le paquet publié avec `-p:UseLocalUmbraApi=false`.
+
+**Authentification** : GitHub Packages exige un jeton même pour un paquet public. Le `nuget.config` du client et du serveur déclare la source `github`, réservée aux paquets `Ashfall.*`. NuGet lit l'identifiant dans la variable `NuGetPackageSourceCredentials_github` (`Username=…;Password=<jeton avec read:packages>`) : la CI la remplit avec son `GITHUB_TOKEN`, `deploy.sh` avec `gh auth token`.
 
 ---
 
