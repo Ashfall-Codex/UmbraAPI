@@ -239,9 +239,26 @@ Tous les DTOs utilisent **MessagePack** (`[MessagePackObject(keyAsPropertyName: 
 dotnet build UmbraSyncAPI/UmbraSync.API.csproj
 ```
 
-**Dépendance** : `MessagePack` 2.5.187
+**Dépendance** : `MessagePack` 3.1.12
 
 **Target** : .NET 10.0 (avec support .NET 9.0)
+
+---
+
+## Paquet NuGet
+
+Le projet est publié sur nuget.org sous le nom `Ashfall.UmbraSync.Api`. L'assembly et l'espace de noms restent `UmbraSync.API`.
+
+**Numérotation** : le majeur vaut `IMareHub.ApiVersion` (un client et un serveur ne se connectent que si elle est identique), le mineur augmente à chaque ajout compatible, le correctif quand rien ne change sur le fil.
+
+**Publier une version** :
+
+1. Mettre à jour `<Version>` dans `UmbraSync.API.csproj`, et `ApiVersion` si le protocole casse.
+2. Pousser le commit sur `main`, puis un tag `vX.Y.Z` identique à la version.
+3. Le workflow `publish.yml` vérifie que le tag pointe sur `main`, qu'il correspond à la version et que le majeur vaut `ApiVersion`, puis publie le paquet et ses symboles (Trusted Publishing, aucune clé stockée).
+4. Côté client et serveur, reporter la version dans `UmbraApiVersion` (`Directory.Build.targets` du client, `UmbraSyncServer/Directory.Build.props` du serveur).
+
+**Mode local** : tant que le sous-module `UmbraAPI` est présent, client et serveur compilent contre ce checkout. La CI, la release du client et `deploy.sh` forcent le paquet publié avec `-p:UseLocalUmbraApi=false`.
 
 ---
 

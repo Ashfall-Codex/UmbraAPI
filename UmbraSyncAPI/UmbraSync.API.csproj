@@ -8,8 +8,31 @@
     <RootNamespace>UmbraSync.API</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Ashfall.UmbraSync.Api</PackageId>
+    <Version>5002.0.0</Version>
+    <Authors>Ashfall Codex</Authors>
+    <Description>Contrats partagés entre le plugin UmbraSync et son serveur : interfaces SignalR, DTO MessagePack, modèles de données et routes HTTP.</Description>
+    <PackageTags>ffxiv;dalamud;umbrasync;signalr;messagepack</PackageTags>
+    <PackageProjectUrl>https://github.com/Ashfall-Codex/UmbraAPI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ashfall-Codex/UmbraAPI.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="3.1.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\LICENSE_MIT" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="NUGET.md" Pack="true" PackagePath="\README.md" />
   </ItemGroup>
 
 </Project>

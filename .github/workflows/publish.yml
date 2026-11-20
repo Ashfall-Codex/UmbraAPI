@@ -1,0 +1,68 @@
+name: Publication du paquet NuGet
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nuget-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Compilation et publication
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      PROJECT: UmbraSyncAPI/UmbraSync.API.csproj
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configuration .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Le tag doit pointer sur main et correspondre à la version
+        run: |
+          git fetch -q origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main \
+            || { echo "::error::$GITHUB_REF_NAME ne pointe pas sur un commit de main"; exit 1; }
+
+          version=$(dotnet msbuild "$PROJECT" -getProperty:Version)
+          [ "v$version" = "$GITHUB_REF_NAME" ] \
+            || { echo "::error::le tag $GITHUB_REF_NAME ne correspond pas à la version du projet ($version)"; exit 1; }
+
+          api=$(sed -nE 's/.*const int ApiVersion = ([0-9]+);.*/\1/p' UmbraSyncAPI/SignalR/IMareHub.cs)
+          [ -n "$api" ] || { echo "::error::ApiVersion introuvable dans IMareHub.cs"; exit 1; }
+          [ "${version%%.*}" = "$api" ] \
+            || { echo "::error::le majeur de $version doit valoir ApiVersion ($api)"; exit 1; }
+
+          echo "Paquet $version, ApiVersion $api"
+
+      - name: Création du paquet
+        run: dotnet pack "$PROJECT" --configuration Release --output artifacts --nologo -p:ContinuousIntegrationBuild=true
+
+      - name: Connexion à nuget.org
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Publication sur nuget.org
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
